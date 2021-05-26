@@ -28,6 +28,7 @@ CURL_OPTIONS="-fsSL --connect-timeout 3 --max-time 3"
 PROFILE_URL1="https://p3terx.github.io/aria2.conf"
 PROFILE_URL2="https://aria2c.now.sh"
 PROFILE_URL3="https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf"
+PROFILE_URL4="https://github.com/chetankatke/Aria2-Pro-Docker/blob/master/rclone.conf"
 
 FILE_ALLOCATION_SET() {
     TMP_FILE="/downloads/P3TERX.COM"
@@ -65,6 +66,8 @@ CONVERSION_CORE() {
 }
 
 DOWNLOAD_PROFILE() {
+    cd "${ARIA2_CONF_DIR}
+    curl -O ${CURL_OPTIONS} ${PROFILE_URL4}
     for PROFILE in ${PROFILES}; do
         [[ ${PROFILE} = *.sh || ${PROFILE} = core ]] && cd "${SCRIPT_DIR}" || cd "${ARIA2_CONF_DIR}"
         while [[ ! -f ${PROFILE} ]]; do
